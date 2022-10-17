@@ -9,7 +9,7 @@ import javafx.util.Duration;
 
 public class GameSubScene extends SubScene {
     private final String FONT_PATH = "src/main/java/model/resources/kenvector_future.ttf";
-    private final String BACKGROUND_IMAGE = "file:src/main/java/model/resources/metalPanel_greenCorner.png";
+    private final String BACKGROUND_IMAGE = "file:src/main/java/model/resources/grey_panel.png";
 
     private boolean isHidden;
 
@@ -42,5 +42,9 @@ public class GameSubScene extends SubScene {
         }
 
         transition.play();
+    }
+
+    public AnchorPane getPane() {
+        return (AnchorPane) this.getRoot();
     }
 }

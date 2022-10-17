@@ -6,8 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import model.GameButton;
-import model.GameSubScene;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ViewManager {
     GameSubScene creditsSubScene;
     GameSubScene helpSubScene;
     GameSubScene scoresSubScene;
-    GameSubScene shipChooserSubScene;
+    GameSubScene mapChooserSubScene;
 
     GameSubScene sceneToHide;
 
@@ -79,6 +78,10 @@ public class ViewManager {
     private void createStartMenuButton(){
         GameButton startButton = new GameButton("PLAY");
         addMenuButton(startButton);
+        startButton.setOnAction(e->{
+            GameViewManager gameViewManager = new GameViewManager();
+            gameViewManager.createNewGame(this.mainStage);
+        });
 
     }
 
@@ -153,10 +156,33 @@ public class ViewManager {
 
         scoresSubScene = new GameSubScene(null,400,380);
         mainPane.getChildren().add(scoresSubScene);
-        showSubScene(scoresSubScene);
 
-        shipChooserSubScene = new GameSubScene(null,400,380);
-        mainPane.getChildren().add(shipChooserSubScene);
+        showSubScene(scoresSubScene);
+        textInScore();
+        textInHelp();
+        textInCredits();
+
+
+
+
+    }
+    private void textInScore(){
+        InfoLabel highScores = new InfoLabel("HIGH SCORES");
+        highScores.setLayoutX(-35);
+        highScores.setLayoutY(-135);
+        scoresSubScene.getPane().getChildren().add(highScores);
+    }
+    private void textInHelp(){
+        InfoLabel help = new InfoLabel("HELP");
+        help.setLayoutX(-35);
+        help.setLayoutY(-135);
+        helpSubScene.getPane().getChildren().add(help);
+    }
+    private void textInCredits(){
+        InfoLabel credits = new InfoLabel("CREDITS");
+        credits.setLayoutX(-35);
+        credits.setLayoutY(-135);
+        creditsSubScene.getPane().getChildren().add(credits);
     }
 
     private void showSubScene(GameSubScene thatScene){
